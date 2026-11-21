@@ -1,0 +1,1146 @@
+***html
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JaffnaTech - Jaffna University Main Page (யாழ்ப்பாணப் பல்கலைக்கழகம்)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans Tamil, Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        uojNavy: '#0b1d36',
+                        uojBlue: '#17386b',
+                        uojGold: '#d97706',
+                        uojAmber: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans Tamil', 'Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'Noto Sans Tamil', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans Tamil', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .page-section {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-active {
+            color: #d97706 !important;
+            border-bottom: 3px solid #d97706;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Top Utility Bar -->
+    <div class="bg-uojNavy text-slate-200 text-xs py-2 px-4 border-b border-slate-700/70">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center space-x-1.5 font-bold text-amber-400">
+                    <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                    <span>JaffnaTech Academic Portal</span>
+                </span>
+                <span class="hidden md:flex items-center space-x-1 text-slate-300">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
+                    <span>Thirunelvely, Jaffna, Sri Lanka</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <!-- Language Switcher -->
+                <button id="langToggleBtn" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-1.5 rounded-xl font-semibold flex items-center space-x-1.5 border border-slate-700 transition-colors">
+                    <i data-lucide="languages" class="w-3.5 h-3.5"></i>
+                    <span id="langLabel">English</span>
+                </button>
+                <!-- Portal User Status -->
+                <button id="openPortalBtn" class="bg-amber-600 hover:bg-amber-500 text-white px-3.5 py-1.5 rounded-xl font-semibold flex items-center space-x-1.5 shadow-sm transition-all">
+                    <i data-lucide="user-circle" class="w-4 h-4"></i>
+                    <span id="portalBtnText">musthakoorr@gmail.com</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- JaffnaTech & University Logo -->
+                <div onclick="navigateTo('home')" class="flex items-center space-x-3 cursor-pointer group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-uojNavy to-uojBlue text-amber-400 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border-2 border-amber-500/40">
+                        <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-amber-100 text-amber-800 text-[11px] font-extrabold px-2 py-0.5 rounded-md tracking-wide uppercase">JaffnaTech</span>
+                            <h1 class="text-base sm:text-lg font-bold text-uojNavy tracking-tight leading-tight">
+                                Jaffna University Main Page
+                            </h1>
+                        </div>
+                        <p class="text-xs font-medium text-slate-500 mt-0.5" data-i18n="uniSubtitle">யாழ்ப்பாணப் பல்கலைக்கழகம் • University of Jaffna</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex space-x-1 h-full items-center">
+                    <button onclick="navigateTo('home')" data-nav="home" class="nav-link nav-active px-3.5 h-full flex items-center text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors" data-i18n="navHome">
+                        Main Page
+                    </button>
+                    <button onclick="navigateTo('courses')" data-nav="courses" class="nav-link px-3.5 h-full flex items-center text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors" data-i18n="navCourses">
+                        Course Page
+                    </button>
+                    <button onclick="navigateTo('vacancies')" data-nav="vacancies" class="nav-link px-3.5 h-full flex items-center text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors" data-i18n="navVacancies">
+                        New Vacancies
+                    </button>
+                    <button onclick="navigateTo('about')" data-nav="about" class="nav-link px-3.5 h-full flex items-center text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors" data-i18n="navAbout">
+                        About Page
+                    </button>
+                    <button onclick="navigateTo('contact')" data-nav="contact" class="nav-link px-3.5 h-full flex items-center text-sm font-semibold text-slate-700 hover:text-amber-600 transition-colors" data-i18n="navContact">
+                        Contact Page
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="mobileMenuBtn" class="p-2.5 rounded-xl text-uojNavy hover:bg-slate-100 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <button onclick="navigateTo('home')" data-nav="home" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold bg-amber-50 text-amber-700" data-i18n="navHome">Main Page</button>
+            <button onclick="navigateTo('courses')" data-nav="courses" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50" data-i18n="navCourses">Course Page</button>
+            <button onclick="navigateTo('vacancies')" data-nav="vacancies" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50" data-i18n="navVacancies">New Vacancies</button>
+            <button onclick="navigateTo('about')" data-nav="about" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50" data-i18n="navAbout">About Page</button>
+            <button onclick="navigateTo('contact')" data-nav="contact" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50" data-i18n="navContact">Contact Page</button>
+        </div>
+    </header>
+
+    <!-- Notification Toast (Replaces alert) -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+
+        <!-- ========================================================= -->
+        <!-- 1. MAIN PAGE (HOME)                                       -->
+        <!-- ========================================================= -->
+        <section id="page-home" class="page-section">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-br from-uojNavy via-uojBlue to-slate-900 text-white relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbbf24_1px,transparent_1px)] [background-size:20px_20px]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center space-x-2 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-semibold px-3.5 py-1.5 rounded-full">
+                                <i data-lucide="award" class="w-4 h-4"></i>
+                                <span data-i18n="heroBadge">JaffnaTech Portal • யாழ்ப்பாணப் பல்கலைக்கழகம் (Est. 1974)</span>
+                            </div>
+                            <h2 class="text-3xl sm:text-5xl font-serif font-bold leading-tight text-white" data-i18n="heroTitle">
+                                Jaffna University Main Page
+                            </h2>
+                            <p class="text-lg sm:text-xl font-semibold text-amber-300" data-i18n="heroTamilSubtitle">
+                                யாழ்ப்பாணப் பல்கலைக்கழகம் — அறிவு, ஆராய்ச்சி மற்றும் புத்தாக்கத்தின் மையம்
+                            </p>
+                            <p class="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl" data-i18n="heroDesc">
+                                JaffnaTech இணைய முகப்பினூடாக யாழ்ப்பாணப் பல்கலைக்கழகத்தின் பட்டப் பாடநெறிகள் (Courses), புதிய வேலைவாய்ப்புகள் (New Vacancies), பல்கலைக்கழக வரலாறு மற்றும் தொடர்பு விவரங்களை ஒரே இடத்தில் பெற்றுக்கொள்ளலாம்.
+                            </p>
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <button onclick="navigateTo('courses')" class="bg-amber-500 hover:bg-amber-600 text-uojNavy font-bold px-6 py-3.5 rounded-2xl shadow-lg flex items-center space-x-2 transition-all">
+                                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                                    <span data-i18n="exploreCoursesBtn">Course Page (பாடநெறிகள்)</span>
+                                </button>
+                                <button onclick="navigateTo('vacancies')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/25 font-semibold px-6 py-3.5 rounded-2xl flex items-center space-x-2 transition-all">
+                                    <i data-lucide="briefcase" class="w-5 h-5 text-amber-400"></i>
+                                    <span data-i18n="viewVacanciesBtn">New Vacancies (வேலைவாய்ப்புகள்)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Quick Navigation Cards to 4 Linked Pages -->
+                        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                            <div onclick="navigateTo('courses')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 p-5 rounded-3xl cursor-pointer transition-all group">
+                                <div class="w-11 h-11 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="library" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base">1. Course Page</h3>
+                                <p class="text-xs text-slate-300 mt-1" data-i18n="cardCourseSub">பட்டப்படிப்புகள் & பீடங்கள்</p>
+                            </div>
+
+                            <div onclick="navigateTo('vacancies')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 p-5 rounded-3xl cursor-pointer transition-all group">
+                                <div class="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="user-plus" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base">2. New Vacancies</h3>
+                                <p class="text-xs text-slate-300 mt-1" data-i18n="cardVacancySub">கல்விசார் & கல்விசாரா பதவிகள்</p>
+                            </div>
+
+                            <div onclick="navigateTo('contact')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 p-5 rounded-3xl cursor-pointer transition-all group">
+                                <div class="w-11 h-11 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="phone-call" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base">3. Contact Page</h3>
+                                <p class="text-xs text-slate-300 mt-1" data-i18n="cardContactSub">தொடர்புகளுக்கு & விண்ணப்பம்</p>
+                            </div>
+
+                            <div onclick="navigateTo('about')" class="bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/15 p-5 rounded-3xl cursor-pointer transition-all group">
+                                <div class="w-11 h-11 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="landmark" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-white text-base">4. About Page</h3>
+                                <p class="text-xs text-slate-300 mt-1" data-i18n="cardAboutSub">வரலாறு, நோக்கு & வளாகங்கள்</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- University Statistics Bar -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <p class="text-3xl font-bold text-uojNavy">11</p>
+                        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-1" data-i18n="statFaculties">கல்விப் பீடங்கள் (Faculties)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-amber-600">12,500+</p>
+                        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-1" data-i18n="statStudents">மாணவர்கள் (Students)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-uojNavy">65+</p>
+                        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-1" data-i18n="statPrograms">பட்டப் பாடநெறிகள் (Courses)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-amber-600">1974</p>
+                        <p class="text-xs sm:text-sm font-medium text-slate-500 mt-1" data-i18n="statFounded">ஸ்தாபிக்கப்பட்ட ஆண்டு</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculties Overview & Latest Notices -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-uojNavy" data-i18n="latestNewsTitle">சமீபத்திய பல்கலைக்கழக அறிவிப்புகள்</h3>
+                        <p class="text-sm text-slate-500" data-i18n="latestNewsSub">JaffnaTech ஊடாக உடனுக்குடன் புதுப்பிக்கப்படும் தகவல்கள்</p>
+                    </div>
+                    <button onclick="navigateTo('vacancies')" class="text-sm font-semibold text-amber-600 hover:text-amber-700 flex items-center space-x-1">
+                        <span data-i18n="seeAllNotices">அனைத்தையும் பார்க்க</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
+                        <span class="text-xs font-semibold bg-blue-50 text-blue-700 px-3 py-1 rounded-full">Admissions 2026</span>
+                        <h4 class="font-bold text-lg text-uojNavy mt-3 mb-2">புதிய கல்வி ஆண்டுக்கான மாணவர் பதிவுகள் ஆரம்பம்</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">விஞ்ஞானம், பொறியியல், மருத்துவம் மற்றும் முகாமைத்துவ பீடங்களுக்கான புதிய மாணவர் பதிவு விவரங்கள் வெளியிடப்பட்டுள்ளன.</p>
+                        <button onclick="navigateTo('courses')" class="text-xs font-bold text-amber-600 hover:underline flex items-center space-x-1">
+                            <span>Course Page செல்லவும்</span>
+                            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
+                        <span class="text-xs font-semibold bg-amber-50 text-amber-700 px-3 py-1 rounded-full">New Vacancies</span>
+                        <h4 class="font-bold text-lg text-uojNavy mt-3 mb-2">விரிவுரையாளர் மற்றும் நிர்வாகப் பதவிகளுக்கான வெற்றிடங்கள்</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">திருநெல்வேலி மற்றும் கிளிநொச்சி வளாகங்களுக்கான புதிய கல்விசார் மற்றும் கல்விசாரா பதவிகளுக்கு விண்ணப்பங்கள் கோரப்படுகின்றன.</p>
+                        <button onclick="navigateTo('vacancies')" class="text-xs font-bold text-amber-600 hover:underline flex items-center space-x-1">
+                            <span>New Vacancies செல்லவும்</span>
+                            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full">University Heritage</span>
+                        <h4 class="font-bold text-lg text-uojNavy mt-3 mb-2">யாழ்ப்பாணப் பல்கலைக்கழகத்தின் 50+ ஆண்டுகால கல்விப் பயணம்</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">1974 ஆம் ஆண்டு முதல் இலங்கையின் உயர்கல்வி மற்றும் ஆராய்ச்சித் துறையில் யாழ்ப்பாணப் பல்கலைக்கழகத்தின் சாதனைகள்.</p>
+                        <button onclick="navigateTo('about')" class="text-xs font-bold text-amber-600 hover:underline flex items-center space-x-1">
+                            <span>About Page செல்லவும்</span>
+                            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- 2. COURSE PAGE                                            -->
+        <!-- ========================================================= -->
+        <section id="page-courses" class="page-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-uojNavy text-white rounded-3xl p-8 sm:p-10 mb-8 shadow-lg">
+                <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">JaffnaTech • Academic Programs</span>
+                <h2 class="text-2xl sm:text-4xl font-bold mt-1" data-i18n="coursePageHeading">Course Page - பாடநெறிகள் & பீடங்கள்</h2>
+                <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl" data-i18n="coursePageDesc">
+                    யாழ்ப்பாணப் பல்கலைக்கழகத்தில் வழங்கப்படும் இளங்கலை மற்றும் முதுகலைப் பட்டப்படிப்புகளைத் தேடி, உங்கள் musthakoorr@gmail.com கணக்கில் சேமித்து (Bookmark) வைத்துக்கொள்ளலாம்.
+                </p>
+            </div>
+
+            <!-- Search & Faculty Filter -->
+            <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div class="relative w-full md:w-96">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-3.5"></i>
+                    <input type="text" id="courseSearchInput" placeholder="பாடநெறியைத் தேடுக (உம்: Computer Science, MBBS)..." class="w-full pl-11 pr-4 py-2.5 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <div class="flex flex-wrap gap-2 w-full md:w-auto" id="facultyFilterBtns">
+                    <button data-faculty="All" class="faculty-btn bg-uojNavy text-white px-4 py-2 rounded-xl text-xs font-semibold">All Faculties</button>
+                    <button data-faculty="Science" class="faculty-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-xl text-xs font-semibold">Science</button>
+                    <button data-faculty="Engineering" class="faculty-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-xl text-xs font-semibold">Engineering</button>
+                    <button data-faculty="Medicine" class="faculty-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-xl text-xs font-semibold">Medicine</button>
+                    <button data-faculty="Management" class="faculty-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-xl text-xs font-semibold">Management</button>
+                    <button data-faculty="Arts" class="faculty-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-xl text-xs font-semibold">Arts</button>
+                </div>
+            </div>
+
+            <!-- Courses Grid -->
+            <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- 3. NEW VACANCIES PAGE                                     -->
+        <!-- ========================================================= -->
+        <section id="page-vacancies" class="page-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-gradient-to-r from-uojNavy to-slate-800 text-white rounded-3xl p-8 sm:p-10 mb-8 shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">JaffnaTech • Careers at UoJ</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold mt-1" data-i18n="vacancyPageHeading">New Vacancies - புதிய வேலைவாய்ப்புகள்</h2>
+                    <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl" data-i18n="vacancyPageDesc">
+                        யாழ்ப்பாணப் பல்கலைக்கழகத்தின் கல்விசார் மற்றும் கல்விசாரா பதவிகளுக்கான தற்போதைய வெற்றிடங்கள். உங்கள் Gmail கணக்கு மூலம் நேரடியாக விண்ணப்பித்துப் பதிவுகளைப் பராமரிக்கலாம்.
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md px-5 py-3.5 rounded-2xl border border-white/15 text-xs">
+                    <p class="text-amber-300 font-semibold">விண்ணப்பதாரர் Gmail:</p>
+                    <p class="text-white font-bold mt-0.5 text-sm" id="vacancyUserEmailBadge">musthakoorr@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- Vacancies List -->
+            <div id="vacanciesList" class="space-y-4">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- 4. ABOUT PAGE                                             -->
+        <!-- ========================================================= -->
+        <section id="page-about" class="page-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-uojNavy text-white rounded-3xl p-8 sm:p-12 mb-10 shadow-lg">
+                <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">JaffnaTech • Heritage & Excellence</span>
+                <h2 class="text-2xl sm:text-4xl font-bold mt-1" data-i18n="aboutPageHeading">About Page - யாழ்ப்பாணப் பல்கலைக்கழகம் பற்றி</h2>
+                <p class="text-slate-300 text-sm sm:text-base mt-3 max-w-3xl leading-relaxed" data-i18n="aboutPageLead">
+                    1974 ஆம் ஆண்டு இலங்கைப் பல்கலைக்கழகத்தின் யாழ்ப்பாண வளாகமாக ஆரம்பிக்கப்பட்டு, 1979 ஆம் ஆண்டு முழுமையான சுயாதீனப் பல்கலைக்கழகமாக உயர்த்தப்பட்டது. வட இலங்கையின் அறிவுசார் மையமாகத் திகழ்கிறது.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                <div class="bg-white p-7 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+                        <i data-lucide="eye" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-uojNavy mb-2">எமது நோக்கு (Vision)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        அறிவு உருவாக்கம், புத்தாக்கம் மற்றும் சமூக மேம்பாட்டிற்கான சர்வதேச அங்கீகாரம் பெற்ற ஒரு முன்னணி உயர்கல்வி மையமாகத் திகழ்வது.
+                    </p>
+                </div>
+
+                <div class="bg-white p-7 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-100 text-uojBlue flex items-center justify-center mb-4">
+                        <i data-lucide="target" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-uojNavy mb-2">எமது பணி (Mission)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        தரமான உயர்கல்வி மற்றும் ஆராய்ச்சி வாய்ப்புகளை வழங்குவதன் மூலம் அறிவாற்றல், ஒழுக்கம் மற்றும் தலைமைத்துவப் பண்புகள் கொண்ட பட்டதாரிகளை உருவாக்குதல்.
+                    </p>
+                </div>
+
+                <div class="bg-white p-7 rounded-3xl shadow-sm border border-slate-200">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
+                        <i data-lucide="building-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-uojNavy mb-2">வளாகங்கள் (Campuses)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        திருநெல்வேலி பிரதான வளாகம் (Thirunelvely), கிளிநொச்சி பொறியியல் மற்றும் தொழில்நுட்ப வளாகம், கைதடி சித்த மருத்துவ வளாகம் ஆகியவற்றை உள்ளடக்கியது.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- 5. CONTACT PAGE                                           -->
+        <!-- ========================================================= -->
+        <section id="page-contact" class="page-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-uojNavy text-white rounded-3xl p-8 sm:p-10 mb-8 shadow-lg">
+                <span class="text-xs font-semibold uppercase tracking-wider text-amber-400">JaffnaTech • Get In Touch</span>
+                <h2 class="text-2xl sm:text-4xl font-bold mt-1" data-i18n="contactPageHeading">Contact Page - தொடர்பு கொள்ள</h2>
+                <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl" data-i18n="contactPageDesc">
+                    யாழ்ப்பாணப் பல்கலைக்கழக நிர்வாகம் அல்லது பாடநெறிகள் தொடர்பான வினவல்களை உங்கள் musthakoorr@gmail.com கணக்கு மூலம் அனுப்பலாம்.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- University Contact Details -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-5">
+                        <h3 class="text-lg font-bold text-uojNavy border-b border-slate-100 pb-3">பல்கலைக்கழகத் தொடர்பு விவரங்கள்</h3>
+                       
+                        <div class="flex items-start space-x-3.5">
+                            <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 uppercase">பிரதான முகவரி (Address)</p>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">University of Jaffna, P.O. Box 57, Thirunelvely, Jaffna, Sri Lanka.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3.5">
+                            <div class="p-2.5 bg-blue-50 text-uojBlue rounded-xl">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 uppercase">தொலைபேசி (Telephone)</p>
+                                <p class="text-sm font-medium text-slate-800 mt-0.5">+94 21 221 8100 / +94 21 222 2294</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3.5">
+                            <div class="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 uppercase">இணைக்கப்பட்ட Gmail கணக்கு</p>
+                                <p class="text-sm font-bold text-uojNavy mt-0.5" id="contactDisplayGmail">musthakoorr@gmail.com</p>
+                                <p class="text-xs text-slate-500">University Registrar: registrar@univ.jfn.ac.lk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Inquiry Form (Saves to Firebase) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold text-uojNavy mb-4">செய்தி அனுப்பவும் (Send an Inquiry)</h3>
+                        <form id="contactInquiryForm" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">உங்கள் பெயர் (Full Name)</label>
+                                    <input type="text" id="contactName" required value="Musthakoor" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-1">உங்கள் Gmail முகவரி</label>
+                                    <input type="email" id="contactEmail" required value="musthakoorr@gmail.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">விடயம் (Subject)</label>
+                                <input type="text" id="contactSubject" required placeholder="உம்: பாடநெறி அல்லது விண்ணப்பம் தொடர்பான விபரம்" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">செய்தி (Message)</label>
+                                <textarea id="contactMessage" rows="4" required placeholder="உங்கள் செய்தியை இங்கே தட்டச்சு செய்யவும்..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full sm:w-auto bg-uojNavy hover:bg-uojBlue text-white font-semibold px-6 py-3 rounded-2xl shadow-md flex items-center justify-center space-x-2 transition-all">
+                                <i data-lucide="send" class="w-4 h-4 text-amber-400"></i>
+                                <span>செய்தியை அனுப்பி சேமிக்கவும்</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- USER ACCOUNT & PERSISTENT DATA MODAL (GMAIL PORTAL)       -->
+    <!-- ========================================================= -->
+    <div id="portalModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100">
+            <div class="bg-uojNavy text-white p-6 flex justify-between items-center sticky top-0 z-10">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-amber-500 text-uojNavy p-2 rounded-xl">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">JaffnaTech பயனர் கணக்கு & சேமிப்புகள்</h3>
+                        <p class="text-xs text-amber-300" id="modalSyncStatus">மேகக்கணிச் சேமிப்பு (Cloud Sync) இணைக்கப்பட்டுள்ளது</p>
+                    </div>
+                </div>
+                <button id="closePortalBtn" class="text-slate-300 hover:text-white p-1.5 rounded-xl bg-white/10">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Connected Gmail Card -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-2xl bg-uojNavy text-amber-400 font-bold text-lg flex items-center justify-center">
+                            M
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500">இணைக்கப்பட்ட Gmail கணக்கு:</p>
+                            <p class="font-bold text-uojNavy text-sm sm:text-base" id="modalUserEmail">musthakoorr@gmail.com</p>
+                        </div>
+                    </div>
+                    <button id="googleAuthSwitchBtn" class="bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 text-xs font-semibold px-3.5 py-2 rounded-xl shadow-sm flex items-center space-x-2">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-amber-600"></i>
+                        <span>Google கணக்கு மாற்று</span>
+                    </button>
+                </div>
+
+                <!-- Editable Persistent Profile Form -->
+                <form id="portalProfileForm" class="space-y-3">
+                    <h4 class="font-bold text-sm text-uojNavy flex items-center space-x-1.5">
+                        <i data-lucide="id-card" class="w-4 h-4 text-amber-600"></i>
+                        <span>எனது சுயவிவர விவரங்கள் (நிரந்தரமாகச் சேமிக்கப்படும்)</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">பெயர் (Display Name)</label>
+                            <input type="text" id="profileDisplayName" value="Musthakoor" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">துறை / நிலை (Department/Role)</label>
+                            <input type="text" id="profileDepartment" value="Student / Applicant - UoJ" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                        சுயவிவரத்தைச் சேமி (Save Profile)
+                    </button>
+                </form>
+
+                <!-- Saved Courses List (Persisted in Firestore) -->
+                <div>
+                    <h4 class="font-bold text-sm text-uojNavy flex items-center space-x-1.5 mb-2">
+                        <i data-lucide="bookmark" class="w-4 h-4 text-amber-600"></i>
+                        <span>சேமிக்கப்பட்ட பாடநெறிகள் (Saved Courses)</span>
+                    </h4>
+                    <div id="savedCoursesContainer" class="space-y-2 text-xs text-slate-600 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                        <p class="text-slate-400 italic">இன்னும் பாடநெறிகள் எதுவும் சேமிக்கப்படவில்லை. Course Page இல் சேமிக்கவும்.</p>
+                    </div>
+                </div>
+
+                <!-- Submitted Inquiries / Applications History -->
+                <div>
+                    <h4 class="font-bold text-sm text-uojNavy flex items-center space-x-1.5 mb-2">
+                        <i data-lucide="history" class="w-4 h-4 text-amber-600"></i>
+                        <span>அனுப்பிய விண்ணப்பங்கள் & செய்திகள் (Activity History)</span>
+                    </h4>
+                    <div id="userHistoryContainer" class="space-y-2 text-xs text-slate-600 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 max-h-40 overflow-y-auto">
+                        <p class="text-slate-400 italic">வரலாறு ஏற்றப்படுகிறது...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VACANCY APPLY MODAL                                       -->
+    <!-- ========================================================= -->
+    <div id="applyVacancyModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-lg text-uojNavy">பதவிக்கு விண்ணப்பித்தல்</h3>
+                <button onclick="closeApplyModal()" class="text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <p class="text-xs text-amber-700 bg-amber-50 p-3 rounded-xl font-semibold mb-4" id="applyJobTitle">Lecturer (Probationary)</p>
+            <form id="vacancyApplyForm" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">விண்ணப்பதாரர் பெயர்</label>
+                    <input type="text" id="applyApplicantName" required value="Musthakoor" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Gmail முகவரி</label>
+                    <input type="email" id="applyApplicantEmail" required value="musthakoorr@gmail.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">தகைமைகள் (Qualifications Summary)</label>
+                    <textarea id="applyQualifications" rows="3" required placeholder="உங்கள் பட்டப்படிப்பு மற்றும் அனுபவ விவரங்களைக் குறிப்பிடவும்..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm"></textarea>
+                </div>
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeApplyModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">ரத்து செய்</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-xs font-bold bg-uojNavy text-white hover:bg-uojBlue">விண்ணப்பத்தைச் சமர்ப்பி</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-uojNavy text-slate-300 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-amber-500 text-uojNavy text-xs font-extrabold px-2.5 py-0.5 rounded-md">JaffnaTech</span>
+                        <h4 class="text-white font-bold text-lg">Jaffna University Main Page</h4>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                        யாழ்ப்பாணப் பல்கலைக்கழக தகவல் மற்றும் சேவை இணையதளம். திருநெல்வேலி, யாழ்ப்பாணம், இலங்கை.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold text-sm mb-3">இணைக்கப்பட்ட பக்கங்கள் (Linked Pages)</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateTo('home')" class="hover:text-amber-400 transition-colors">1. Main Page (முகப்பு)</button></li>
+                        <li><button onclick="navigateTo('courses')" class="hover:text-amber-400 transition-colors">2. Course Page (பாடநெறிகள்)</button></li>
+                        <li><button onclick="navigateTo('vacancies')" class="hover:text-amber-400 transition-colors">3. New Vacancies (வேலைவாய்ப்புகள்)</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-amber-400 transition-colors">4. Contact Page (தொடர்புகளுக்கு)</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-amber-400 transition-colors">5. About Page (எம்மைப் பற்றி)</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold text-sm mb-3">JaffnaTech பயனர் கணக்கு</h5>
+                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 text-xs space-y-1">
+                        <p class="text-slate-400">Connected Gmail:</p>
+                        <p class="text-amber-400 font-bold text-sm" id="footerUserEmail">musthakoorr@gmail.com</p>
+                        <p class="text-emerald-400 flex items-center space-x-1 pt-1">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                            <span>தரவுகள் பாதுகாப்பாகச் சேமிக்கப்படுகின்றன</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6 text-center text-xs text-slate-400">
+                © 2026 JaffnaTech • Jaffna University Main Page (யாழ்ப்பாணப் பல்கலைக்கழகம்) | User: musthakoorr@gmail.com
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase & Interactive Application Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import {
+            getAuth,
+            signInAnonymously,
+            signInWithCustomToken,
+            GoogleAuthProvider,
+            signInWithPopup,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            collection,
+            addDoc,
+            onSnapshot
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // University Data
+        const coursesData = [
+            { id: 'csc', title: 'B.Sc. Honours in Computer Science', faculty: 'Science', duration: '4 Years', desc: 'மென்பொருள் பொறியியல், செயற்கை நுண்ணறிவு மற்றும் தரவு அறிவியல் பட்டப்படிப்பு.' },
+            { id: 'eng', title: 'B.Sc. Engineering (Civil / Electrical / Computer)', faculty: 'Engineering', duration: '4 Years', desc: 'கிளிநொச்சி பொறியியல் பீடத்தில் வழங்கப்படும் அங்கீகரிக்கப்பட்ட பொறியியல் பட்டம்.' },
+            { id: 'med', title: 'Bachelor of Medicine & Bachelor of Surgery (MBBS)', faculty: 'Medicine', duration: '5 Years', desc: 'யாழ்ப்பாண மருத்துவ பீடத்தின் மருத்துவ மற்றும் சத்திரசிகிச்சை பட்டப்படிப்பு.' },
+            { id: 'bba', title: 'Bachelor of Business Administration (BBA)', faculty: 'Management', duration: '4 Years', desc: 'கணக்கியல், நிதியியல் மற்றும் மனிதவள முகாமைத்துவ சிறப்புப் பட்டப்படிப்பு.' },
+            { id: 'arts', title: 'B.A. Honours in Tamil / English / Economics', faculty: 'Arts', duration: '4 Years', desc: 'கலைப்பீடத்தின் மொழியியல், பொருளியல் மற்றும் சமூகவியல் சிறப்புப் பட்டங்கள்.' },
+            { id: 'it', title: 'Bachelor of Information Technology (BIT)', faculty: 'Science', duration: '3 Years', desc: 'தகவல் தொழில்நுட்பம் மற்றும் இணையவழி மென்பொருள் உருவாக்கப் பட்டப்படிப்பு.' }
+        ];
+
+        const vacanciesData = [
+            { id: 'vac1', title: 'Senior Lecturer / Lecturer (Probationary) - Computer Science', dept: 'Department of Computer Science', deadline: '2026-12-15', type: 'Academic' },
+            { id: 'vac2', title: 'Demonstrator / Temporary Assistant Lecturer', dept: 'Faculty of Engineering, Kilinochchi', deadline: '2026-12-05', type: 'Academic' },
+            { id: 'vac3', title: 'Management Assistant (Grade III)', dept: 'Registrar Office, Thirunelvely', deadline: '2026-12-20', type: 'Non-Academic' },
+            { id: 'vac4', title: 'Technical Officer (IT & Networking)', dept: 'Computer Unit, University of Jaffna', deadline: '2026-12-10', type: 'Technical' }
+        ];
+
+        // Bilingual Dictionary
+        const i18n = {
+            ta: {
+                uniSubtitle: 'யாழ்ப்பாணப் பல்கலைக்கழகம் • University of Jaffna',
+                navHome: 'Main Page',
+                navCourses: 'Course Page',
+                navVacancies: 'New Vacancies',
+                navAbout: 'About Page',
+                navContact: 'Contact Page',
+                heroBadge: 'JaffnaTech Portal • யாழ்ப்பாணப் பல்கலைக்கழகம் (Est. 1974)',
+                heroTitle: 'Jaffna University Main Page',
+                heroTamilSubtitle: 'யாழ்ப்பாணப் பல்கலைக்கழகம் — அறிவு, ஆராய்ச்சி மற்றும் புத்தாக்கத்தின் மையம்',
+                heroDesc: 'JaffnaTech இணைய முகப்பினூடாக யாழ்ப்பாணப் பல்கலைக்கழகத்தின் பட்டப் பாடநெறிகள் (Courses), புதிய வேலைவாய்ப்புகள் (New Vacancies), பல்கலைக்கழக வரலாறு மற்றும் தொடர்பு விவரங்களை ஒரே இடத்தில் பெற்றுக்கொள்ளலாம்.',
+                exploreCoursesBtn: 'Course Page (பாடநெறிகள்)',
+                viewVacanciesBtn: 'New Vacancies (வேலைவாய்ப்புகள்)',
+                cardCourseSub: 'பட்டப்படிப்புகள் & பீடங்கள்',
+                cardVacancySub: 'கல்விசார் & கல்விசாரா பதவிகள்',
+                cardContactSub: 'தொடர்புகளுக்கு & விண்ணப்பம்',
+                cardAboutSub: 'வரலாறு, நோக்கு & வளாகங்கள்',
+                statFaculties: 'கல்விப் பீடங்கள் (Faculties)',
+                statStudents: 'மாணவர்கள் (Students)',
+                statPrograms: 'பட்டப் பாடநெறிகள் (Courses)',
+                statFounded: 'ஸ்தாபிக்கப்பட்ட ஆண்டு',
+                latestNewsTitle: 'சமீபத்திய பல்கலைக்கழக அறிவிப்புகள்',
+                latestNewsSub: 'JaffnaTech ஊடாக உடனுக்குடன் புதுப்பிக்கப்படும் தகவல்கள்',
+                seeAllNotices: 'அனைத்தையும் பார்க்க',
+                coursePageHeading: 'Course Page - பாடநெறிகள் & பீடங்கள்',
+                coursePageDesc: 'யாழ்ப்பாணப் பல்கலைக்கழகத்தில் வழங்கப்படும் இளங்கலை மற்றும் முதுகலைப் பட்டப்படிப்புகளைத் தேடி, உங்கள் musthakoorr@gmail.com கணக்கில் சேமித்து (Bookmark) வைத்துக்கொள்ளலாம்.',
+                vacancyPageHeading: 'New Vacancies - புதிய வேலைவாய்ப்புகள்',
+                vacancyPageDesc: 'யாழ்ப்பாணப் பல்கலைக்கழகத்தின் கல்விசார் மற்றும் கல்விசாரா பதவிகளுக்கான தற்போதைய வெற்றிடங்கள். உங்கள் Gmail கணக்கு மூலம் நேரடியாக விண்ணப்பித்துப் பதிவுகளைப் பராமரிக்கலாம்.',
+                aboutPageHeading: 'About Page - யாழ்ப்பாணப் பல்கலைக்கழகம் பற்றி',
+                aboutPageLead: '1974 ஆம் ஆண்டு இலங்கைப் பல்கலைக்கழகத்தின் யாழ்ப்பாண வளாகமாக ஆரம்பிக்கப்பட்டு, 1979 ஆம் ஆண்டு முழுமையான சுயாதீனப் பல்கலைக்கழகமாக உயர்த்தப்பட்டது. வட இலங்கையின் அறிவுசார் மையமாகத் திகழ்கிறது.',
+                contactPageHeading: 'Contact Page - தொடர்பு கொள்ள',
+                contactPageDesc: 'யாழ்ப்பாணப் பல்கலைக்கழக நிர்வாகம் அல்லது பாடநெறிகள் தொடர்பான வினவல்களை உங்கள் musthakoorr@gmail.com கணக்கு மூலம் அனுப்பலாம்.'
+            },
+            en: {
+                uniSubtitle: 'University of Jaffna • Thirunelvely, Sri Lanka',
+                navHome: 'Main Page',
+                navCourses: 'Course Page',
+                navVacancies: 'New Vacancies',
+                navAbout: 'About Page',
+                navContact: 'Contact Page',
+                heroBadge: 'JaffnaTech Portal • University of Jaffna (Est. 1974)',
+                heroTitle: 'Jaffna University Main Page',
+                heroTamilSubtitle: 'University of Jaffna — Center of Knowledge, Research & Innovation',
+                heroDesc: 'Through the JaffnaTech academic portal, seamlessly explore degree programs, apply for new vacancies, learn about the university heritage, and contact university administration.',
+                exploreCoursesBtn: 'Explore Course Page',
+                viewVacanciesBtn: 'View New Vacancies',
+                cardCourseSub: 'Undergraduate & Postgraduate Degrees',
+                cardVacancySub: 'Academic & Non-Academic Careers',
+                cardContactSub: 'Administration & Direct Inquiries',
+                cardAboutSub: 'History, Vision & Campuses',
+                statFaculties: 'Academic Faculties',
+                statStudents: 'Enrolled Students',
+                statPrograms: 'Degree Programs',
+                statFounded: 'Year Established',
+                latestNewsTitle: 'Latest University Announcements',
+                latestNewsSub: 'Real-time academic and administrative notices via JaffnaTech',
+                seeAllNotices: 'View All Updates',
+                coursePageHeading: 'Course Page - Degree Programs & Faculties',
+                coursePageDesc: 'Search undergraduate and postgraduate degree programs at the University of Jaffna and bookmark your preferred courses to your musthakoorr@gmail.com account.',
+                vacancyPageHeading: 'New Vacancies - Careers at University of Jaffna',
+                vacancyPageDesc: 'Current academic, technical, and administrative job openings. Submit and track your applications directly using your connected Gmail account.',
+                aboutPageHeading: 'About Page - Heritage & Overview',
+                aboutPageLead: 'Established in 1974 as the Jaffna Campus of the University of Sri Lanka and elevated to an autonomous university in 1979, standing as the premier intellectual hub in Northern Sri Lanka.',
+                contactPageHeading: 'Contact Page - Administration & Inquiries',
+                contactPageDesc: 'Reach out to the University of Jaffna administration in Thirunelvely or send a saved inquiry using your musthakoorr@gmail.com account.'
+            }
+        };
+
+        // App State (Defaulting to user's specified Gmail)
+        let currentLang = 'ta';
+        let currentUser = null;
+        let activeGmail = 'musthakoorr@gmail.com';
+        let userProfileData = {
+            displayName: 'Musthakoor',
+            department: 'Student / Applicant - UoJ',
+            savedCourses: []
+        };
+        let userHistoryList = [];
+        let selectedCourseFaculty = 'All';
+
+        // Firebase Setup
+        let db = null;
+        let auth = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'jaffnatech-uoj-portal';
+
+        async function initFirebase() {
+            try {
+                if (typeof __firebase_config === 'undefined') return;
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                // Rule 3: Auth Before Queries
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                onAuthStateChanged(auth, (user) => {
+                    currentUser = user;
+                    if (user) {
+                        if (user.email) {
+                            activeGmail = user.email;
+                            updateGmailDisplays();
+                        }
+                        subscribeToPersistentData(user.uid);
+                    }
+                });
+            } catch (err) {
+                console.error("Firebase init error:", err);
+            }
+        }
+
+        function updateGmailDisplays() {
+            document.getElementById('portalBtnText').textContent = activeGmail;
+            document.getElementById('modalUserEmail').textContent = activeGmail;
+            document.getElementById('footerUserEmail').textContent = activeGmail;
+            document.getElementById('vacancyUserEmailBadge').textContent = activeGmail;
+            document.getElementById('contactDisplayGmail').textContent = activeGmail;
+            document.getElementById('contactEmail').value = activeGmail;
+            document.getElementById('applyApplicantEmail').value = activeGmail;
+        }
+
+        // Firestore Real-time Sync (Rule 1 & Rule 2 Compliant)
+        function subscribeToPersistentData(uid) {
+            if (!db || !uid) return;
+
+            // 1. User Profile & Saved Courses Document
+            const profileDocRef = doc(db, 'artifacts', appId, 'users', uid, 'portalProfile', 'main');
+            onSnapshot(profileDocRef, (snap) => {
+                if (snap.exists()) {
+                    const data = snap.data();
+                    userProfileData = {
+                        displayName: data.displayName || 'Musthakoor',
+                        department: data.department || 'Student / Applicant - UoJ',
+                        savedCourses: data.savedCourses || []
+                    };
+                    if (data.gmail) {
+                        activeGmail = data.gmail;
+                        updateGmailDisplays();
+                    }
+                    document.getElementById('profileDisplayName').value = userProfileData.displayName;
+                    document.getElementById('profileDepartment').value = userProfileData.department;
+                    document.getElementById('contactName').value = userProfileData.displayName;
+                    document.getElementById('applyApplicantName').value = userProfileData.displayName;
+                } else {
+                    // Initialize default record for musthakoorr@gmail.com
+                    setDoc(profileDocRef, {
+                        gmail: activeGmail,
+                        displayName: userProfileData.displayName,
+                        department: userProfileData.department,
+                        savedCourses: []
+                    }, { merge: true }).catch(console.error);
+                }
+                renderCourses();
+                renderSavedCoursesModal();
+            }, (err) => console.error("Profile snapshot error:", err));
+
+            // 2. User Submissions (Inquiries & Job Applications)
+            const submissionsColRef = collection(db, 'artifacts', appId, 'users', uid, 'submissions');
+            onSnapshot(submissionsColRef, (snapshot) => {
+                const items = [];
+                snapshot.forEach(docSnap => {
+                    items.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                // Sort in JS memory (Rule 2)
+                items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                userHistoryList = items;
+                renderHistoryModal();
+            }, (err) => console.error("Submissions snapshot error:", err));
+        }
+
+        // Save Profile Changes
+        document.getElementById('portalProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newName = document.getElementById('profileDisplayName').value.trim();
+            const newDept = document.getElementById('profileDepartment').value.trim();
+            userProfileData.displayName = newName;
+            userProfileData.department = newDept;
+
+            if (db && currentUser) {
+                const profileDocRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'portalProfile', 'main');
+                await setDoc(profileDocRef, {
+                    gmail: activeGmail,
+                    displayName: newName,
+                    department: newDept
+                }, { merge: true });
+            }
+            showToast('உங்கள் சுயவிவரம் JaffnaTech கணக்கில் சேமிக்கப்பட்டது!');
+        });
+
+        // Toggle Bookmark Course
+        window.toggleSaveCourse = async function(courseId) {
+            const exists = userProfileData.savedCourses.includes(courseId);
+            if (exists) {
+                userProfileData.savedCourses = userProfileData.savedCourses.filter(id => id !== courseId);
+                showToast('பாடநெறி சேமிப்பிலிருந்து நீக்கப்பட்டது.');
+            } else {
+                userProfileData.savedCourses.push(courseId);
+                showToast('பாடநெறி உங்கள் கணக்கில் சேமிக்கப்பட்டது!');
+            }
+
+            renderCourses();
+            renderSavedCoursesModal();
+
+            if (db && currentUser) {
+                const profileDocRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'portalProfile', 'main');
+                await setDoc(profileDocRef, {
+                    gmail: activeGmail,
+                    savedCourses: userProfileData.savedCourses
+                }, { merge: true });
+            }
+        };
+
+        // Submit Contact Inquiry
+        document.getElementById('contactInquiryForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                type: 'Contact Inquiry',
+                name: document.getElementById('contactName').value.trim(),
+                email: document.getElementById('contactEmail').value.trim(),
+                subject: document.getElementById('contactSubject').value.trim(),
+                message: document.getElementById('contactMessage').value.trim(),
+                createdAt: Date.now()
+            };
+
+            if (db && currentUser) {
+                const colRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'submissions');
+                await addDoc(colRef, payload);
+            } else {
+                userHistoryList.unshift(payload);
+                renderHistoryModal();
+            }
+
+            document.getElementById('contactSubject').value = '';
+            document.getElementById('contactMessage').value = '';
+            showToast('உங்கள் செய்தி வெற்றிகரமாக அனுப்பப்பட்டுச் சேமிக்கப்பட்டது!');
+        });
+
+        // Vacancy Application Flow
+        let selectedVacancyTitle = '';
+        window.openApplyModal = function(title) {
+            selectedVacancyTitle = title;
+            document.getElementById('applyJobTitle').textContent = title;
+            document.getElementById('applyVacancyModal').classList.remove('hidden');
+        };
+        window.closeApplyModal = function() {
+            document.getElementById('applyVacancyModal').classList.add('hidden');
+        };
+
+        document.getElementById('vacancyApplyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                type: 'Job Application',
+                subject: selectedVacancyTitle,
+                name: document.getElementById('applyApplicantName').value.trim(),
+                email: document.getElementById('applyApplicantEmail').value.trim(),
+                message: document.getElementById('applyQualifications').value.trim(),
+                createdAt: Date.now()
+            };
+
+            if (db && currentUser) {
+                const colRef = collection(db, 'artifacts', appId, 'users', currentUser.uid, 'submissions');
+                await addDoc(colRef, payload);
+            } else {
+                userHistoryList.unshift(payload);
+                renderHistoryModal();
+            }
+
+            document.getElementById('applyQualifications').value = '';
+            closeApplyModal();
+            showToast('வேலைவாய்ப்பு விண்ணப்பம் வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது!');
+        });
+
+        // Google Popup Sign-In Switcher
+        document.getElementById('googleAuthSwitchBtn').addEventListener('click', async () => {
+            if (!auth) return;
+            try {
+                const provider = new GoogleAuthProvider();
+                provider.setCustomParameters({ login_hint: 'musthakoorr@gmail.com' });
+                const res = await signInWithPopup(auth, provider);
+                if (res.user && res.user.email) {
+                    activeGmail = res.user.email;
+                    updateGmailDisplays();
+                    showToast(`இணைக்கப்பட்டது: ${activeGmail}`);
+                }
+            } catch (err) {
+                showToast('musthakoorr@gmail.com கணக்கு தொடர்ந்து இணைப்பில் உள்ளது.');
+            }
+        });
+
+        // Render Functions
+        function renderCourses() {
+            const grid = document.getElementById('coursesGrid');
+            const query = document.getElementById('courseSearchInput').value.toLowerCase();
+
+            const filtered = coursesData.filter(c => {
+                const matchesFac = selectedCourseFaculty === 'All' || c.faculty === selectedCourseFaculty;
+                const matchesSearch = c.title.toLowerCase().includes(query) || c.desc.toLowerCase().includes(query);
+                return matchesFac && matchesSearch;
+            });
+
+            grid.innerHTML = filtered.map(course => {
+                const isSaved = userProfileData.savedCourses.includes(course.id);
+                return `
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition-all">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-3">
+                                <span class="text-xs font-bold bg-amber-50 text-amber-700 px-3 py-1 rounded-full">${course.faculty}</span>
+                                <span class="text-xs font-medium text-slate-500 flex items-center">
+                                    <i data-lucide="clock" class="w-3.5 h-3.5 mr-1"></i>${course.duration}
+                                </span>
+                            </div>
+                            <h3 class="font-bold text-lg text-uojNavy mb-2">${course.title}</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-5">${course.desc}</p>
+                        </div>
+                        <button onclick="toggleSaveCourse('${course.id}')" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-2 transition-all ${isSaved ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 hover:bg-uojNavy hover:text-white text-slate-700'}">
+                            <i data-lucide="${isSaved ? 'bookmark-check' : 'bookmark'}" class="w-4 h-4"></i>
+                            <span>${isSaved ? 'சேமிக்கப்பட்டது (Saved)' : 'பாடநெறியைச் சேமி (Bookmark)'}</span>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function renderVacancies() {
+            const list = document.getElementById('vacanciesList');
+            list.innerHTML = vacanciesData.map(vac => `
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-amber-300 transition-all">
+                    <div class="space-y-1.5">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-xs font-bold bg-blue-50 text-uojBlue px-2.5 py-0.5 rounded-lg">${vac.type}</span>
+                            <span class="text-xs text-rose-600 font-semibold">Closing Date: ${vac.deadline}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-uojNavy">${vac.title}</h3>
+                        <p class="text-sm text-slate-500">${vac.dept}</p>
+                    </div>
+                    <button onclick="openApplyModal('${vac.title}')" class="bg-amber-500 hover:bg-amber-600 text-uojNavy font-bold px-5 py-3 rounded-2xl text-xs shadow-sm flex items-center justify-center space-x-2 shrink-0 transition-all">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Apply Now</span>
+                    </button>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function renderSavedCoursesModal() {
+            const container = document.getElementById('savedCoursesContainer');
+            if (!userProfileData.savedCourses.length) {
+                container.innerHTML = `<p class="text-slate-400 italic">இன்னும் பாடநெறிகள் எதுவும் சேமிக்கப்படவில்லை. Course Page இல் சேமிக்கவும்.</p>`;
+                return;
+            }
+            container.innerHTML = userProfileData.savedCourses.map(id => {
+                const c = coursesData.find(item => item.id === id);
+                if (!c) return '';
+                return `
+                    <div class="flex justify-between items-center bg-white p-2.5 rounded-xl border border-slate-200">
+                        <span class="font-semibold text-uojNavy">${c.title}</span>
+                        <button onclick="toggleSaveCourse('${c.id}')" class="text-rose-500 hover:text-rose-700 font-semibold">நீக்கு</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderHistoryModal() {
+            const container = document.getElementById('userHistoryContainer');
+            if (!userHistoryList.length) {
+                container.innerHTML = `<p class="text-slate-400 italic">இதுவரை விண்ணப்பங்கள் அல்லது செய்திகள் எதுவும் அனுப்பப்படவில்லை.</p>`;
+                return;
+            }
+            container.innerHTML = userHistoryList.map(item => `
+                <div class="bg-white p-2.5 rounded-xl border border-slate-200 space-y-1">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-amber-700">${item.type}</span>
+                        <span class="text-[11px] text-slate-400">${item.email}</span>
+                    </div>
+                    <p class="font-semibold text-uojNavy">${item.subject}</p>
+                </div>
+            `).join('');
+        }
+
+        // SPA Page Router
+        window.navigateTo = function(pageId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) target.classList.remove('hidden');
+
+            // Update Desktop Nav Active State
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('nav-active');
+                if (btn.getAttribute('data-nav') === pageId) {
+                    btn.classList.add('nav-active');
+                }
+            });
+
+            // Update Mobile Nav Active State
+            document.querySelectorAll('.mobile-nav-link').forEach(btn => {
+                btn.classList.remove('bg-amber-50', 'text-amber-700');
+                btn.classList.add('text-slate-700');
+                if (btn.getAttribute('data-nav') === pageId) {
+                    btn.classList.add('bg-amber-50', 'text-amber-700');
+                    btn.classList.remove('text-slate-700');
+                }
+            });
+
+            document.getElementById('mobileMenu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Toast Helper
+        function showToast(msg) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'bg-uojNavy text-white px-4 py-3.5 rounded-2xl shadow-xl border border-amber-500/40 flex items-center space-x-3 text-xs font-semibold mb-2 pointer-events-auto';
+            toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-amber-400 shrink-0"></i><span>${msg}</span>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => toast.remove(), 3500);
+        }
+
+        // Event Listeners Setup
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        document.getElementById('openPortalBtn').addEventListener('click', () => {
+            document.getElementById('portalModal').classList.remove('hidden');
+        });
+        document.getElementById('closePortalBtn').addEventListener('click', () => {
+            document.getElementById('portalModal').classList.add('hidden');
+        });
+
+        document.getElementById('courseSearchInput').addEventListener('input', renderCourses);
+
+        document.querySelectorAll('.faculty-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.faculty-btn').forEach(b => {
+                    b.classList.remove('bg-uojNavy', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.add('bg-uojNavy', 'text-white');
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+                selectedCourseFaculty = btn.getAttribute('data-faculty');
+                renderCourses();
+            });
+        });
+
+        document.getElementById('langToggleBtn').addEventListener('click', () => {
+            currentLang = currentLang === 'ta' ? 'en' : 'ta';
+            document.getElementById('langLabel').textContent = currentLang === 'ta' ? 'English' : 'தமிழ்';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) {
+                    el.textContent = i18n[currentLang][key];
+                }
+            });
+        });
+
+        // Boot Application
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            updateGmailDisplays();
+            renderCourses();
+            renderVacancies();
+            initFirebase();
+        });
+    </script>
+</body>
+</html>
+``` 
